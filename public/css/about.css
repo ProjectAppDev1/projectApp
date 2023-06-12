@@ -1,0 +1,96 @@
+body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    background-color: #daeefc !important;
+  }
+  
+  header {
+    background-color: #161438;
+    color: #fff;
+    padding: 20px;
+  }
+  
+  h1 {
+    text-align: center;
+  }
+  
+  h2 {
+    margin-left: 15px !important;
+    text-shadow: 1px 1px 2px #52b8ff;
+    font-family: lightWeightFont !important;
+  }
+  
+  
+  main {
+    padding: 20px;
+  }
+  
+  section {
+    margin-bottom: 20px;
+  }
+  
+  footer {
+    background-color: #161438;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .movie-cards-container {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 5%;
+  }
+  
+  .movie-card {
+    max-width: 270px;
+    width: 20%;
+  }
+  
+  .icon-img {
+    width: 242px;
+    height: 62px;
+    position: absolute;
+    left: 0;
+    cursor: pointer;
+  }
+  
+  .about-content pre {
+    padding: 0;
+    margin: 0;
+    border: none;
+    font-family: Arial, sans-serif;
+    background: none;
+    font-size: 18px;
+  }
+  
+  p {
+    padding: 0;
+    margin: 0 17px 10px !important;
+    border: none;
+    font-family: Arial, sans-serif;
+    background: none;
+    font-size: 18px;
+  }
+  
+  @font-face {
+    font-family: lightWeightFont;
+    src: url("/assets/fonts/SansationLight.woff");
+  }
+  
+  #branches-container {
+    column-count: 10; /* Two columns */
+  }
+  
+  .branch-link {
+    cursor: pointer;
+    color: #0e00ff;
+  }
+  
+  .maps-frame {
+    width: 100%; 
+    height: 450px;
+  }
