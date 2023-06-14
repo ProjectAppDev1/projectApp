@@ -42,16 +42,16 @@ body, html {
   height: 100%;
 }
 
-#Home {background-color: red;}
-#News {background-color: green;}
-#Contact {background-color: blue;}
-#About {background-color: orange;}
+#Home {background-color:rgb(0, 157, 255);}
+#Products {background-color: rgb(0, 128, 85);}
+#Contact {background-color: rgb(107, 107, 178);}
+#About {background-color: rgb(144, 111, 176);}
 
 </style>
 <body>
 
 <button class="tablink" onclick="openPage('Home', this, 'red')">Home</button>
-<button class="tablink" onclick="openPage('News', this, 'green')" id="defaultOpen">News</button>
+<button class="tablink" onclick="openPage('Products', this, 'green')" id="defaultOpen">Products</button>
 <button class="tablink" onclick="openPage('Contact', this, 'blue')">Contact</button>
 <button class="tablink" onclick="openPage('About', this, 'orange')">About</button>
 
@@ -60,9 +60,25 @@ body, html {
   <p>Home is where the heart is..</p>
 </div>
 
-<div id="News" class="tabcontent">
+<div id="Products" class="tabcontent">
   <h3>Products</h3>
-  <p>Some news this fine day!</p> 
+  <h1>ברוכים הבאים לחנות שלי</h1>
+
+  <h2>מוצרים</h2>
+  <ul>
+    <li>מוצר 1 <button onclick="addToCart('מוצר 1')">הוסף לעגלה</button></li>
+    <li>מוצר 2 <button onclick="addToCart('מוצר 2')">הוסף לעגלה</button></li>
+    <li>מוצר 3 <button onclick="addToCart('מוצר 3')">הוסף לעגלה</button></li>
+    <!-- ניתן להוסיף עוד מוצרים -->
+  </ul>
+
+  <h2>עגלת קניות</h2>
+  <ul id="cart-list">
+    <!-- כאן יוצג רשימת המוצרים שנבחרו בעגלת הקניות -->
+  </ul>
+
+
+  <p>Some products this fine day!</p> 
 </div>
 
 <div id="Contact" class="tabcontent">
@@ -92,6 +108,17 @@ function openPage(pageName,elmnt,color) {
   document.getElementById(pageName).style.display = "block";
   elmnt.style.backgroundColor = color;
 }
+function addToCart(productName) {
+      // מציאת אלמנט ה-UL של עגלת הקניות
+      var cartList = document.getElementById('cart-list');
+
+      // יצירת אלמנט חדש למוצר
+      var newCartItem = document.createElement('li');
+      newCartItem.innerText = productName;
+
+      // הוספת המוצר לרשימת המוצרים בעגלת הקניות
+      cartList.appendChild(newCartItem);
+    }
 
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
