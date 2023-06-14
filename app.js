@@ -11,7 +11,9 @@ var app = express();
 // Home page test
 app.use("/", require("./Routes/HomePageTest"));
 app.use("/about" , require("./Routes/about"));
-app.use("/PrivateArea",require("./Routes/PrivateArea") )
+app.use("/PrivateArea",require("./Routes/PrivateArea"));
+app.use("/PrivateArea",require("./Routes/payment"));
+
 
 // listen to port
 app.listen(process.env.PORT,()=>{
