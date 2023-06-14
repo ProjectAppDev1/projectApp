@@ -8,9 +8,10 @@ env.config();
 var app = express();
  
 //Routes 
-app.use("/about" , require("./Routes/about"));
 // Home page test
 app.use("/", require("./Routes/HomePageTest"));
+app.use("/about" , require("./Routes/about"));
+app.use("/PrivateArea",require("./Routes/PrivateArea") )
 
 // listen to port
 app.listen(process.env.PORT,()=>{
