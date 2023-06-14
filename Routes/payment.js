@@ -1,5 +1,7 @@
-const express = require('express');
-const { index } = require('../controllers/payment');
+const express = require("express");
 const router = express.Router();
-router.get('/', index);
+const HomePageContoller = require("../controllers/payment")
+
+router.get("/",HomePageContoller.index )
+
 module.exports = router;
