@@ -13,6 +13,7 @@ app.use("/", require("./Routes/HomePageTest"));
 app.use("/about" , require("./Routes/about"));
 app.use("/PrivateArea",require("./Routes/PrivateArea"));
 app.use("/payment",require("./Routes/payment"));
+app.use("/login",require("./Routes/login"));
 
 
 // listen to port
