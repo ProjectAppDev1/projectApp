@@ -3,7 +3,11 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="public/css/styles.css" rel="stylesheet" type="text/css">
+<link href="try.css" rel="stylesheet">
+<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+
 <title>Tamy</title>
 
 </head> 
@@ -51,18 +55,31 @@ body, html {
 
 /*עיצוב של ה login and contacat*/
 
+
+
+
 </style>
 <body>
+
 
 <button class="tablink" onclick="openPage('Home', this, 'red')" id="defaultOpen">Home </button>
 <button class="tablink" onclick="openPage('Products', this, 'green')" >Products</button>
 <button class="tablink" onclick="openPage('Contact', this, 'blue')">Contact </button>
-<button class="tablink" onclick="window.location.href='about'">About</button>
+<button class="tablink" onclick="window.location.href='about'" >About</button>
 
 
 <div id="Home" class="tabcontent">
   <h3>Home</h3>
   <p>Home is where the heart is..</p>
+  <!-- Masthead-->
+<header class="masthead">
+  <div class="container">
+      <div class="masthead-heading text-uppercase">It's Nice To Meet You</div>
+      <ul><a class="btn btn-primary btn-xl text-uppercase" href="login" style="width:200px;height:55px;">sign in ></a></ul>
+      <ul><a class="btn btn-primary btn-xl text-uppercase" href="PrivateArea" style="width:200px;height:55px;">Private Area ></a></ul>
+
+  </div>
+  </header>
 </div>
 
 <div id="Products" class="tabcontent">
@@ -87,20 +104,6 @@ body, html {
 
   <p>Some products this fine day!</p> 
 </div>
-
-<div id="Contact" class="tabcontent">
-  <h3>Contact</h3>
-  <p>Get in touch, or swing by for a cup of coffee.</p>
-  <button onclick="location.href='Payment'" class="btn btn-primary">עבור לעמוד השני</button>
-
-</div>
-
-<div id="About" class="tabcontent">
-  <h3>About</h3>
-  <p>Who we are and what we do.</p>
-  <button onclick="location.href='about'" class="btn btn-primary">עבור לעמוד השני</button>
-</div>
-
 
 
 <script>

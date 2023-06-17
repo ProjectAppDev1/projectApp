@@ -5,11 +5,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About Us</title>
-  <link rel="stylesheet" href="/css/about.css">
   <link href="public/css/styles.css" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/about.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 </head>
 <style>
     
@@ -152,78 +152,39 @@
   
 
   
-  </style>
+</style>
 <body>
-
-  <button class="tablink" onclick="openPage('Home', this, 'red')">Home </button>
+  <button class="tablink" onclick="window.location.href='http://localhost:5000/'">Home</button>
   <button class="tablink" onclick="openPage('Products', this, 'green')" >Products</button>
   <button class="tablink" onclick="openPage('Contact', this, 'blue')">Contact </button>
-  <button class="tablink" onclick="window.location.href='about'"  id="defaultOpen">About</button>
-  
-  
-  <div id="Home" class="tabcontent"></div>
-  <div id="Products" class="tabcontent"></div>
-  <div id="Contact" class="tabcontent"></div>
-  <div id="About" class="tabcontent">
-      <section>
-        <h2>Our Mission</h2>
-        <pre>
-          yummy 
-        </pre>
+  <button class="tablink" onclick="window.location.href='about'" id="defaultOpen">About</button>
 
-      </section>
-      <section>
-        <h2>Our Team</h2>
-        <p></p>
-        <div class="row">
-          <div class="col-md-3">
-            <div class="thumbnail">
-              <img src="/assets/team/shift_manager.png" alt="shift_manager" style="width:70%">
-              <div class="caption">
-                <h3>Yarden Magriso</h3>
-                <h4></h4>
+  <div id="About" class="tabcontent">
+
+     
+        <!-- להכניס כאן סיפור על החנות-->
+        <section class="page-section" id="about">
+          <div class="container">
+              <div class="text-center">
+                  <h2 class="section-heading text-uppercase">About</h2>
+                  <h3 class="section-subheading text-muted">our story</h3>
               </div>
-              </a>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="thumbnail">
-              <img src="/assets/team/cashier.png" alt="cashier" style="width:70%">
-              <div class="caption">
-                <h3>Tal</h3>
-                <h4>Cashier</h4>
-              </div>
-              </a>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="thumbnail">
-              <img src="/assets/team/usher.png" alt="usher" style="width:70%">
-              <div class="caption">
-                <h3>adi</h3>
-                <h4>Usher</h4>
-              </div>
-              </a>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="thumbnail">
-              <img src="/assets/team/popcorn_guy.png" alt="popcorn_guy" style="width:70%">
-              <div class="caption">
-                <h3>msehi</h3>
-                <h4>Popcorn guy</h4>
-              </div>
-              </a>
-            </div>
+              <ul class="timeline">
+                  <li>
+                      <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/1.jpg" alt="..." /></div>
+                      <div class="timeline-panel">
+                          <div class="timeline-heading">
+                              <h4>יוני 2023</h4>
+                              <h4 class="subheading">להוסיף חרטא על החנות</h4>
+                          </div>
+                          <div class="timeline-body"><p class="text-muted"> חנות רחפנים לפרוייקט חרא</p></div>
+                      </div>
+                  </li>
+              </ul>
           </div>
       </section>
-      <section>
-        <h2>Visit us</h2>
-        <div id="branches-container"></div>
-        <div id="maps-container"></div>
-    </div>
-    </iframe>
-    </section>
+
+     
     <section>
       <h2 style="text-shadow: 1px 1px 2px #FC0">Contact Us</h2>
       <aside>
@@ -234,13 +195,29 @@
     </div>
   </body>
   <footer>
-    <p>Copyright © 2023 CinemaWorld</p>
+    <p>Copyright © 2023 Tamy.yummy</p>
     <script src="/js/about.js"></script>
   </footer>
     
     <button onclick="location.href='about'" class="btn btn-primary">עבור לעמוד השני</button>
   </div>
   
+  <script>
+  
+function openPage(pageName,elmnt,color) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].style.backgroundColor = "";
+  }
+  document.getElementById(pageName).style.display = "block";
+  elmnt.style.backgroundColor = color;
+}
+  </script>
 
 
 
