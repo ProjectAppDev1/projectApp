@@ -54,10 +54,11 @@ body, html {
 </style>
 <body>
 
-<button class="tablink" onclick="openPage('Home', this, 'red')">Home </button>
-<button class="tablink" onclick="openPage('Products', this, 'green')" id="defaultOpen">Products</button>
+<button class="tablink" onclick="openPage('Home', this, 'red')" id="defaultOpen">Home </button>
+<button class="tablink" onclick="openPage('Products', this, 'green')" >Products</button>
 <button class="tablink" onclick="openPage('Contact', this, 'blue')">Contact </button>
-<button class="tablink" onclick="window.location.href='about'">About</button>
+<button class="tablink" onclick="openPage('Contact', this, 'blue')" onclick="window.location.href='about'">About </button>
+
 
 
 <div id="Home" class="tabcontent">
