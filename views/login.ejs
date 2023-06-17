@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Page</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Login</h1>
+    <form id="loginForm">
+      <input type="text" id="username" placeholder="Username">
+      <input type="password" id="password" placeholder="Password">
+      <button type="submit">Login</button>
+    </form>
+  </div>
+
+
+
+
+  <script>
+    
+document.getElementById("loginForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+    
+    // Perform login validation here
+    
+    // Example validation: Check if username is "admin" and password is "password"
+    if (username === "admin" && password === "password") {
+      alert("Login successful!");
+    } else {
+      alert("Invalid username or password!");
+    }
+  });
+  
+  </script>
+</body>
+</html>
