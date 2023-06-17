@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Catalog</title>
+  <style>
+    /* עיצוב למוצרים */
+    .product {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .product img {
+      width: 100px;
+      height: 100px;
+      margin-right: 10px;
+    }
+
+    .product-details {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* עיצוב לסל */
+    #cart {
+      border: 1px solid black;
+      padding: 10px;
+      margin-top: 20px;
+    }
+
+    #cart h2 {
+      margin-bottom: 10px;
+    }
+
+    #cart ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    #cart li {
+      margin-bottom: 10px;
+    }
+
+    /*הדיפלוט של העמוד */
+    
+* {box-sizing: border-box}
+
+/* Set height of body and the document to 100% */
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial;
+}
+
+/* Style tab links */
+.tablink {
+  background-color: #555;
+  color: white;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 17px;
+  width: 25%;
+}
+
+.tablink:hover {
+  background-color: #777;
+}
+
+/* Style the tab content (and add height:100% for full page content) */
+.tabcontent {
+  color: white;
+  display: none;
+  padding: 100px 20px;
+  height: 100%;
+}
+
+#Home {background-color: red;}
+#News {background-color: green;}
+#Contact {background-color: blue;}
+#About {background-color: orange;}
+
+
+
+  </style>
+</head>
+<body>
+    <button class="tablink" onclick="window.location.href='http://localhost:5000/'">Home</button>
+    <button class="tablink" onclick="window.location.href='Products'"id="defaultOpen" >Products</button>
+    <button class="tablink" onclick="window.location.href='Contact'" >Contact</button>
+    <button class="tablink" onclick="window.location.href='about'" >About</button>
+  
+  <h1>Product Catalog</h1>
+
+  <!-- רשימת מוצרים -->
+  <div id="products" >
+    <div class="product">
+      <img src="product1.jpg" alt="Product 1">
+      <div class="product-details">
+        <h3>Product 1</h3>
+        <p>Price: $10</p>
+        <button onclick="addToCart('Product 1', 10)">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product">
+      <img src="product2.jpg" alt="Product 2">
+      <div class="product-details">
+        <h3>Product 2</h3>
+        <p>Price: $15</p>
+        <button onclick="addToCart('Product 2', 15)">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- וכו' - הוסיפי כאן מוצרים נוספים -->
+  </div>
+
+  <!-- סל הקניות -->
+  <div id="cart">
+    <h2>Shopping Cart</h2>
+    <ul id="cart-items"></ul>
+    <p>Total: $<span id="cart-total">0</span></p>
+
+
+    <button onclick="goToPayment()">Go to Payment</button>
+  </div>
+
+  <script>
+    // מערך המכיל את המוצרים שנבחרו
+    let cartItems = [];
+    // סכום המחירים של המוצרים בסל
+    let cartTotal = 0;
+
+    function addToCart(productName, price) {
+      // הוספת המוצר למערך המוצרים בסל
+      cartItems.push({ name: productName, price: price });
+      // עדכון סכום המחירים
+      cartTotal += price;
+      // עדכון התצוגה של סל הקניות
+      updateCartDisplay();
+    }
+
+    function updateCartDisplay() {
+      // ניקוי רשימת המוצרים בסל
+      document.getElementById("cart-items").innerHTML = "";
+      // עידכון רשימת המוצרים בסל
+      cartItems.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = `${item.name} - $${item.price}`;
+        document.getElementById("cart-items").appendChild(li);
+      });
+      // עדכון סך המחירים בסל
+      document.getElementById("cart-total").textContent = cartTotal;
+    }
+    function goToPayment() {
+ 
+  window.location.href = 'http://localhost:5000/payment'; // מעבר לדף התשלום
+    }
+
+
+
+  </script>
+</body>
+</html>
