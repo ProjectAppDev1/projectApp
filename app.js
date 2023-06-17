@@ -15,6 +15,7 @@ app.use("/PrivateArea",require("./Routes/PrivateArea"));
 app.use("/payment",require("./Routes/payment"));
 app.use("/login",require("./Routes/login"));
 app.use("/Products",require("./Routes/Products"));
+app.use("/Contact",require("./Routes/Contact"));
 
 // listen to port
 app.listen(process.env.PORT,()=>{
