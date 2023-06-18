@@ -17,6 +17,12 @@ app.use("/login",require("./Routes/login"));
 app.use("/Products",require("./Routes/Products"));
 app.use("/Contact",require("./Routes/Contact"));
 
+//Adding ejs
+app.set("assets", "ejs");
+app.engine("ejs", require("ejs").__express);
+app.use(express.static(__dirname + "/assets"));
+app.use('/assets', express.static('assets'))
+
 // listen to port
 app.listen(process.env.PORT,()=>{
     console.log(`listen to port: ${process.env.PORT}`);
