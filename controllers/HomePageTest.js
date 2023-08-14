@@ -1,6 +1,6 @@
 
 const index = (req, res) => {
-    res.render("../views/HomePageTest.ejs");
+    res.render("../views/HomePageTest.ejs", {test: 'yarden'});
 }
 
 
