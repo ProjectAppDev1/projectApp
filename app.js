@@ -17,6 +17,7 @@ app.use("/login",require("./Routes/login"));
 app.use("/Products",require("./Routes/Products"));
 app.use("/Contact",require("./Routes/Contact"));
 app.use("/admin",require("./Routes/admin"));
+app.use("/Branch", require("./Routes/Branch"));
 
 //Adding ejs
 app.set("assets", "ejs");

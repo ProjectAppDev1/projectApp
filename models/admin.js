@@ -11,6 +11,10 @@ const Admin = new Schema({
         type: String,
         isRequired: true
     },
+    email:{
+        type:String,
+        isRequired:true
+    }
 });
 
 module.exports = mongoose.model('Admin', Admin, "admins");
