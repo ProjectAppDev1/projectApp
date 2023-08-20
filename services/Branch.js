@@ -1,9 +1,11 @@
 const Branch = require('../models/Branch');
 
-const createBranch = async (name, location) => {
+
+const createBranch = async (name,latitude,longitude) => {
     const branch = new Branch({
         name: name,
-        location: location,
+        latitude:latitude,
+        longitude:longitude
     });
 
     return await branch.save();
@@ -17,12 +19,13 @@ const deleteBranch = async (id) => {
     return branch;
 };
 
-const editBranch = async (id, name, location) => {
+const editBranch = async (id, name,latitude,longitude) => {
     const branch = await getBranchById(id);
     if (!branch) return null;
   
     branch.name = name;
-    branch.location = location;
+    branch.latitude = latitude;
+    branch.longitude-longitude;
     return await branch.save();
   };
 
