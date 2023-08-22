@@ -7,11 +7,11 @@ const Branch = new Schema({
         isRequired: true
     },
     latitude: {
-        type:Number,
+        type:String,
         isRequired: true
     },
     longitude: {
-        type:Number,
+        type:String,
         isRequired: true
     },
 });
