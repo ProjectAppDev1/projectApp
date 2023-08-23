@@ -1,4 +1,5 @@
 const express = require("express")
+const bodyParser = require("body-parser");
 const mongoose = require("mongoose")
 const session = require("express-session")
 const env = require("dotenv");
@@ -6,6 +7,20 @@ const ConnectMongo = require("./config/mongoConfig");
 env.config();
 
 var app = express();
+
+app.use(
+  session({
+    secret: "50c29d05f9e4c4df37215a8f2b4d02a144853fdeca848f5478b3a67fa9fb4a0c",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false },
+  })
+);
+
+app.use(bodyParser.json());
+
+// Parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
  
 //Routes 
 // Home page test

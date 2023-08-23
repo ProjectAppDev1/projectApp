@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
+   
 </head>
 
 <body>
@@ -28,7 +29,7 @@
                           <li class="nav-item"><a class="nav-link" href="about">about</a></li>
                           <li class="nav-item"><a class="nav-link" href="Contact">Contact</a></li>
                           <li class="nav-item"><a class="nav-link" href="PrivateArea">Private area</a></li>
-                      </ul><a class="btn btn-primary shadow" role="button" href="login">Sign up</a>
+                      </ul><a class="btn btn-primary shadow" role="button" href="login">Login</a>
                   </div>
         </div>
     </nav>
@@ -208,29 +209,22 @@
           attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>'
         }).addTo(map);
     
-        L.marker([31.99072, 34.77486]).addTo(map).bindPopup('MALL');
-    
-        var Branch = [
-          { location: { latitude: 31.99072, longitude: 34.77486 } },
-        
-        ];
-        
-    
-        for (var i = 0; i < Branch.length; i++) {
-          L.marker([Branch[i].location.latitude, Branch[i].location.longitude])
+        const initMap = async() => {
+            const branches = await $.get('/branch')
+
+            branches.forEach(branch => {
+                console.log(parseFloat(branch.latitude),parseFloat(branch.longitude))
+                L.marker([parseFloat(branch.latitude),parseFloat(branch.longitude)])
             .addTo(map)
             .bindPopup('A marker on the map.');
+            })
         }
+        initMap();
+
+        const weather = $.get(`https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid=bb401b5a4e5bdb3c13381223d0e298bf`);
+        console.log(weather)
       </script>
     
-    
-    
-    
-    
-  
-    
-          
-
     </section>
     <footer class="bg-primary-gradient">
         <div class="container py-4 py-lg-5">
@@ -287,5 +281,6 @@
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/bold-and-bright.js"></script>
 </body>
+
 
 </html>

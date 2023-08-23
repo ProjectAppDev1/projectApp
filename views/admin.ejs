@@ -34,10 +34,11 @@
                           <li class="nav-item"><a class="nav-link active" href="about">about</a></li>
                           <li class="nav-item"><a class="nav-link" href="Contact">Contact</a></li>
                           <li class="nav-item"><a class="nav-link" href="PrivateArea">Private area</a></li>
-                      </ul><a class="btn btn-primary shadow" role="button" href="login">Sign up</a>
+                      </ul><a class="btn btn-primary shadow" role="button" href="login">Login</a>
                   </div>
     </nav>
         <h1>Admin page</h1>
+        <button onclick="postToFacebook()">Post to facebook</button>
         <ul id="navbar" class="navbar-nav mx-auto">
             <li class="nav-item"><a id="createMovieFormLink" onclick="loadPanel('admin/createMovieForm')">Add new movie</a></li>
             <li class="nav-item"><a id="manageMoviesFormLink" onclick="loadPanel('admin/manageMoviesForm')">Manage movies</a></li>
@@ -110,6 +111,35 @@
     </footer>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/bold-and-bright.js"></script>
+    <script>
+        const postToFacebook = () => {
+            const accessToken = `EAADTedh7DDgBO6zuSmHl7KoZCAF1LkRKNnHFoaZBX5n5TZBp29drFK3WCJFZB7g05chMnBBpyhbzt4nqSmxHGGLPgYoaat7uMGtDMQTiR41aJoXvAQ7wXf8UxaGk2MzaWrwXA9SqZBEH1SfKNclxSodX2QSeL8b7VpgQm5VF2dsnnIYhachoYqSrDG8SBYMrBNm18PS7ZCYGz3XjgdOnQax3oZD`;
+
+            const pageId = '106948385754099';
+    
+            const message = `Hello`;
+    
+            const apiUrl = `https://graph.facebook.com/v16.0/${pageId}/feed`;
+    
+            const postData = {
+                message,
+                access_token:accessToken
+            }
+    
+            $.ajax({
+                url: apiUrl,
+                type: "POST",
+                data: postData,
+                success: response => {
+                    alert("success")
+                },
+                error: response => {
+                    alert("error")
+                }
+            })
+        }
+        
+        </script>
 </body>
 
 </html>

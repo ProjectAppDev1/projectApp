@@ -1,9 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const HomePageContoller = require("../controllers/login")
+const LoginContoller = require("../controllers/login");
+const {redirectIfAuthenticated} = require("../middlewares/auth")
 
-router.get("/",HomePageContoller.index )
+router.route("/").get(redirectIfAuthenticated, LoginContoller.index).post(LoginContoller.login);
 
 module.exports = router;
-
-
