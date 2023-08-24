@@ -1,6 +1,6 @@
 const bcrypt = require("bcryptjs");
 
-const adminService = require("../services/admin");
+const userService = require("../services/user");
 
 const index = (req, res) => {
   res.render("../views/login.ejs", {errors: []});
@@ -9,23 +9,27 @@ const index = (req, res) => {
 const login = async (req, res) => {
   const { username, password } = req.body;
 
-  const admin = await adminService.getAdmin(username);
-
-  if (!admin) {
+  const user = await userService.getUser(username);
+  if (!user) {
     return res.render("../views/login.ejs", {
       errors: ["Invalid username or password"],
     });
   }
-
-  const isMatch = await bcrypt.compare(password, admin.password);
+  
+  const isMatch = bcrypt.compare(password, user.password);
   if (!isMatch) {
     return res.render("../views/login.ejs", {
       errors: ["Invalid username or password"],
     });
   }
 
-  req.session.adminId = admin._id;
+  req.session.user = user;
 
+  if (!user.isAdmin) {
+    return res.render("../views/HomePageTest.ejs", {user: true})
+  }
+
+  
   return res.redirect('/admin')
 };
 

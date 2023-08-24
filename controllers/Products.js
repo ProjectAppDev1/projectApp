@@ -23,6 +23,8 @@ const index = async (req, res) => {
   res.render("../views/Products.ejs", { wines });
 };
 
+
+
 module.exports = {
   index,
 };

@@ -8,7 +8,7 @@ const ConnectMongo = () => {
   // });
 
   mongoose.connect(
-    "mongodb+srv://yarden:Tal1212@cluster0.uxxxm4j.mongodb.net/?retryWrites=true&w=majority/User",
+    process.env.MONGO_URL,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,

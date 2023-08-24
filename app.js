@@ -29,10 +29,12 @@ app.use("/about" , require("./Routes/about"));
 app.use("/PrivateArea",require("./Routes/PrivateArea"));
 app.use("/payment",require("./Routes/payment"));
 app.use("/login",require("./Routes/login"));
+app.use("/register",require("./Routes/register"));
 app.use("/Products",require("./Routes/Products"));
 app.use("/Contact",require("./Routes/Contact"));
 app.use("/admin",require("./Routes/admin"));
 app.use("/Branch", require("./Routes/Branch"));
+app.use("/cart", require("./Routes/cart"));
 
 //Adding ejs
 app.set("assets", "ejs");
@@ -47,8 +49,8 @@ app.listen(process.env.PORT,()=>{
 })
 
 
-// יצירת מודל המשתמש
-const User = mongoose.model('User', {
-  name: String,
-  email: String,
-});
+// // יצירת מודל המשתמש
+// const User = mongoose.model('User', {
+//   name: String,
+//   email: String,
+// });

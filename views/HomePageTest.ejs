@@ -29,7 +29,14 @@
                           <li class="nav-item"><a class="nav-link" href="about">about</a></li>
                           <li class="nav-item"><a class="nav-link" href="Contact">Contact</a></li>
                           <li class="nav-item"><a class="nav-link" href="PrivateArea">Private area</a></li>
-                      </ul><a class="btn btn-primary shadow" role="button" href="login">Login</a>
+                          <li class="nav-item"><a class="nav-link" href="cart">My Cart</a></li>
+                      </ul>
+                      <% if (user) { %>
+                        <button class="btn btn-danger shadow" onclick="onDisconnect()">Disconnect</button>
+                      <% } else { %>
+                        <a class="btn btn-primary shadow" role="button" href="login">Login</a>
+                        <a class="btn btn-primary shadow" role="button" href="register">Register</a>
+                      <% } %>
                   </div>
         </div>
     </nav>
@@ -223,6 +230,12 @@
 
         const weather = $.get(`https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid=bb401b5a4e5bdb3c13381223d0e298bf`);
         console.log(weather)
+
+        function onDisconnect() {
+            sessionStorage.clear();
+            window.location.href = '/'; // Replace with your logout URL
+        }
+
       </script>
     
     </section>

@@ -2,7 +2,7 @@ const index = (req, res) => {
     res.render("../views/admin.ejs");
 }
 
-const adminService = require("../services/admin");
+const adminService = require("../services/user");
 
 
 const createMovieForm = (req, res) => {

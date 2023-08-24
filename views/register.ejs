@@ -122,12 +122,12 @@ input{
 	<div class="main">  	
 		<input type="checkbox" id="chk" aria-hidden="true">
 			<div class="signup">
-				<form method="post" action="/login">
-					<label for="chk" aria-hidden="true">Login</label>
+				<form method="post" action="/register">
+					<label for="chk" aria-hidden="true">Register</label>
 					<input type="text" name="username" placeholder="User name" required="">
+                    <input type="email" name="email" placeholder="email" required="">
 					<input type="password" name="password" placeholder="Password" required="">
-					<input type="submit" class="login-button" title="login"/>
-					<a href="register">Not Registered ?</a>
+					<input type="submit" class="login-button" title="register"/>
 				</form>
 				<% if (errors.length > 0) { %>
 					<div class="errors"><%= errors[0] %></div>
