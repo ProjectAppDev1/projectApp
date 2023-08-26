@@ -1,8 +1,13 @@
-const index = (req, res) => {
-    res.render("../views/about.ejs");
-}
+const express = require('express');
+const router = express.Router();
 
-module.exports = 
- {
-    index
-};
+const { showChart } = require('../controllers/PurchaseController');
+
+router.get('/', (req, res) => {
+    
+    res.render('about');
+});
+
+router.get('/chart', showChart);
+
+module.exports = router;

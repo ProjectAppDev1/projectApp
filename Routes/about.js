@@ -1,5 +1,12 @@
 const express = require('express');
-const { index } = require('../controllers/about');
 const router = express.Router();
-router.get('/', index);
+
+const { showChart } = require('../controllers/PurchaseController');
+
+router.get('/', (req, res) => {
+    res.render('about');
+});
+
+router.get('/chart', showChart);
+
 module.exports = router;
