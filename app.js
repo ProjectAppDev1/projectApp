@@ -4,8 +4,8 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const env = require("dotenv");
 const ConnectMongo = require("./config/mongoConfig");
-const Purchase = require("./models/Purchase"); 
-const PurchaseController = require("./controllers/PurchaseController"); 
+var path = require ('path');
+
 env.config();
 
 var app = express();
@@ -20,10 +20,12 @@ app.use(
 );
 
 app.use(bodyParser.json());
-
+app.use(express.static(path.join(__dirname + '../views')));
+// Parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Routes
+//Routes
+// Home page test
 app.use("/", require("./Routes/HomePageTest"));
 app.use("/about", require("./Routes/about"));
 app.use("/PrivateArea", require("./Routes/PrivateArea"));
@@ -35,48 +37,40 @@ app.use("/Contact", require("./Routes/Contact"));
 app.use("/admin", require("./Routes/admin"));
 app.use("/Branch", require("./Routes/Branch"));
 app.use("/cart", require("./Routes/cart"));
+app.use("/orders", require("./Routes/orders"))
 
-// Adding ejs
-app.set("view engine", "ejs"); 
+
+//Adding ejs
+app.set("assets", "ejs");
+app.engine("ejs", require("ejs").__express);
 app.use(express.static(__dirname + "/assets"));
 app.use("/assets", express.static("assets"));
 
-// Home page route
-app.get("/", (req, res) => {
-  res.send("Home Page");
+
+
+app.get('/getSalesData', async (req, res) => {
+    const client = new MongoClient('mongodb://localhost:27017/', { useNewUrlParser: true });
+    try {
+        await client.connect();
+        const db = client.db('Purchase'); 
+        const collection = db.collection('purchase');
+
+        const result = await collection.find().toArray();
+        res.json(result);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Internal Server Error');
+    } finally {
+        await client.close();
+    }
 });
 
 
-app.get("/about", async (req, res) => {
-  try {
-    const purchases = await Purchase.find();
-    
-    const monthlyData = {};
-    purchases.forEach(purchase => {
-      const month = purchase.date.split("-")[1]; // משווה על פי החודש בפורמט YYYY-MM-DD
-      if (!monthlyData[month]) {
-        monthlyData[month] = [];
-      }
-      monthlyData[month].push(purchase.amount);
-    });
-    
-    const labels = Object.keys(monthlyData);
-    const data = labels.map(month => {
-      const sum = monthlyData[month].reduce((acc, curr) => acc + curr, 0);
-      return sum / monthlyData[month].length;
-    });
 
-    res.render("about", { labels, data });
-
-  } catch (err) {
-    console.error(err);
-    res.status(500).send("Internal Server Error");
-  }
-});
-
-
-// Start listening
+// listen to port
 app.listen(process.env.PORT, () => {
-  console.log(`Listening on port: ${process.env.PORT}`);
+  console.log(`listen to port: ${process.env.PORT}`);
   ConnectMongo();
 });
+
+
