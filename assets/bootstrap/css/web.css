@@ -1,0 +1,19 @@
+body{
+    background-color: rgb(170, 170, 1);
+}
+h1{
+color: black;
+
+}
+p{
+    color: brown;
+
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+::placeholder{
+    text-shadow: 5cap;
+}
+
+
+ 
