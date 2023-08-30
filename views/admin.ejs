@@ -37,6 +37,34 @@
         color: white;
         font-weight: bold;
     }
+  
+    #wineTable {
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0px 0px 20px rgba(55, 99, 244, 0.5); /* Blue shadow */
+        background-color: white;
+        
+        margin-top: 20px;
+        overflow: hidden;
+    }
+
+    #wineTable thead {
+        background-color: #3763f4;
+        color: white;
+    }
+
+    #wineTable th, #wineTable td {
+        padding: 15px;
+        text-align: left;
+    }
+
+    #wineTable tbody tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    #wineTable tbody tr:hover {
+        background-color: #ddd;
+    }
 
     .navbar-nav  {
         color: white;
@@ -48,7 +76,7 @@
 
     h1, h5 {
         color: #3763f4;
-        padding: 20px 0;
+        padding: 5px ;
         text-align: center;
     }
 
@@ -64,10 +92,11 @@
         color: white;
         border: none;
         width: 150px;
-        height: 60px;
+        height: 50px;
         border-radius: 4px;
         cursor: pointer;
         transition: background-color 0.3s ease;
+        margin: 5px;
     }
 
     button:hover {
@@ -86,11 +115,12 @@
     }
 
     th {
-        background-color: #f2f2f2;
+        background-color: #3763f4;
     }
 
     tr:nth-child(even) {
-        background-color: #f2f2f2;
+        background-color: #3763f4;
+        border-radius: 15px;
     }
 
     tr:hover {
@@ -109,25 +139,35 @@
     }
 
     .table-container {
-        width: 100%;
+      
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: column;
     }
+    #search-order{
+
+        background-color: #3763f4;
+        color: white;
+        border: none;
+        width: 120px;
+        height: 40px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin: 10px;
+
+    }
+    h6{
+         
+        color: #3763f4;
+        margin: 5px;
+    }
+    
+   
 </style>
 
 </head>
-<body>
-    
-    
-
-
-
-
-    
-   
-
 
 <body>
     <nav class="navbar navbar-light navbar-expand-md sticky-top navbar-shrink py-3" id="mainNav">
@@ -157,9 +197,8 @@
                        
                         <a id="createWineFormLink" href="/admin/create-wine">Add new wine</a> 
                     </button>
-                    <button class="nav-item">
-                        <a id="manageWineFormLink" href="/admin/manage-wine">Manage wines</a>
-                    </button>
+                  
+                   
                     <button class="nav-item">
                         <a id="createBranchFormLink" href="/admin/create-branch">Add new branch</a>
                     </button>
@@ -168,7 +207,8 @@
                     </button>
                 </div>
                 <div class="table-container">
-                    <input type="text" id="order-search-input" />
+                    <h6> Orders History :</h6>
+                    <input type="text" id="order-search-input" placeholder="Enter Parameter" />
                     <button id="search-order" onclick="searchOrder()">search</button>
                     <table id="wineTable">
                         <thead>
@@ -179,6 +219,8 @@
                             </tr>
                         </thead>
                         <tbody id="tableBody">
+                          
+                           
                         </tbody>
                     </table>
                 </div>
@@ -191,12 +233,12 @@
     <script>
         const searchOrder = async() => {
             const userId = document.getElementById("order-search-input").value;
-            const orders = await $.ajax(`/orders/${userId}`)
-            console.log(orders)
+            const orders = await $.ajax(`/orders/${userId}`);
+            console.log(orders);
             renderTable(orders);
         }
         function loadManageWines(){
-            window.location.href = "/admin/manageWine"
+            window.location.href = "/admin/manageWine";
         }
         const postToFacebook = () => {
             const accessToken = `EAADTedh7DDgBOyIMkTJXVSn9rEVEKNHJSITRb1nK92RTdVG1ZB17EqGlZAwXPxErTiUMIdy7wNHt7CGo8wCBXzUwV1dR8V4meQlvuNttrP50DpJstaw9G2u7PZA5spZCtLNkAPaZBTZBb1DUjwfBFMPQQqm7ZBsNLSlUWvz2K5ARWyqDXUEvDsZAdaB6BNFoaPbqPuDRfOohv6rYHV7GvJc3lwoZD`;
@@ -254,8 +296,8 @@
             console.log(JSON.stringify(allOrders[3]));
             renderTable(allOrders);
         }
-        loadAllOrder()
-  </script>
+        loadAllOrder();
+    </script>
         <div id="admin-panel"></div>
 </body>
 <div class="text-muted d-flex justify-content-between align-items-center pt-3">

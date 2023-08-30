@@ -71,20 +71,6 @@ function updateAdmins() {
   });
 }
 
-function loadPanel(panelUrl) {
-  const adminPanel = document.getElementById("admin-panel");
-  $.ajax({
-    url: panelUrl,
-    method: "GET",
-    success: function (response) {
-      adminPanel.innerHTML = response;
-      loadPanelElements(panelUrl);
-    },
-    error: function (xhr, status, error) {
-      console.log("AJAX request failed: " + error);
-    },
-  });
-}
 
 function initNavBarElements() {
   const navBar = document.getElementById("navbar");
@@ -94,6 +80,4 @@ function initNavBarElements() {
   }
 }
 
-e;
 
-loadPanel("admin/createwineForm");
