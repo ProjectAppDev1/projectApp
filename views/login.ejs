@@ -18,7 +18,7 @@
       align-items: center;
       min-height: 100vh;
       font-family: "Jost", sans-serif;
-      background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+      background: linear-gradient(to bottom, #b1d3ff, #467dff, #0c0963ce);
     }
     .main {
       width: 350px;
@@ -67,7 +67,7 @@
       justify-content: center;
       display: block;
       color: #fff;
-      background: #573b8a;
+      background: #60a5ff;
       font-size: 1em;
       font-weight: bold;
       margin-top: 20px;
@@ -78,7 +78,7 @@
       cursor: pointer;
     }
     .login-button:hover {
-      background: #6d44b8;
+      background: #0c2885;
     }
     .login {
       height: 460px;
@@ -88,7 +88,7 @@
       transition: 0.8s ease-in-out;
     }
     .login label {
-      color: #573b8a;
+      color: #0622a0;
       transform: scale(0.6);
     }
 
@@ -106,17 +106,41 @@
       bottom: 20px;
       right: 20px;
       padding: 10px 20px;
-      background-color: #333;
-      color: #fff;
+      background-color: #60a5ff;
+      color: #ffffff;
       text-decoration: none;
+      justify-content: center;
+
       border-radius: 4px;
     }
-
+    .home-button:hover {
+      background: #0c2885;
+    }
+    #RegisterButton {
+      width: 60%;
+      height: 30px;
+      margin: 10px auto;
+      justify-content: center;
+      display: block;
+      color: #fff;
+      background: #60a5ff;
+      text-decoration: none;
+      margin-top: 20px;
+      outline: none;
+      border: none;
+      border-radius: 5px;
+      transition: 0.2s ease-in;
+      cursor: pointer;
+      text-align: center;
+    }
+    #RegisterButton:hover {
+      background: #0c2885;
+    }
     .errors {
       color: white;
       text-align: center;
       margin-top: 30px;
-      background-color: #0f0c29;
+      background-color: #000000;
       padding: 10px 0;
     }
   </style>
@@ -138,14 +162,19 @@
             placeholder="Password"
             required=""
           />
-          <input type="submit" class="login-button" title="login" />
-        <button  <a href="register">Not Registered ?</a></buttom>
+          <button type="submit" class="login-button" title="login">
+            Login
+          </button>
         </form>
+        <a href="/register" class="RegisterButton" id="RegisterButton"
+          >Not Registered ?
+        </a>
+
         <% if (errors.length > 0) { %>
         <div class="errors"><%= errors[0] %></div>
         <% } %>
       </div>
     </div>
-    <a href="/" class="home-button">Back to Home Page</a>
+    <a href="/" class="home-button" id="HomeButton">Back to Home Page</a>
   </body>
 </html>
