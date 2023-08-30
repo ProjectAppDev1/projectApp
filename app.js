@@ -5,6 +5,8 @@ const session = require("express-session");
 const env = require("dotenv");
 const ConnectMongo = require("./config/mongoConfig");
 var path = require("path");
+const WebSocket = require('ws');
+const http = require('http');
 
 env.config();
 
@@ -40,8 +42,7 @@ app.use("/cart", require("./Routes/cart"));
 app.use("/orders", require("./Routes/orders"));
 
 //Adding ejs
-app.set("assets", "ejs");
-app.engine("ejs", require("ejs").__express);
+app.set("view engine", "ejs"); // Set the view engine to ejs
 app.use(express.static(__dirname + "/assets"));
 app.use("/assets", express.static("assets"));
 
@@ -64,8 +65,28 @@ app.get("/getSalesData", async (req, res) => {
   }
 });
 
-// listen to port
-app.listen(process.env.PORT, () => {
-  console.log(`listen to port: ${process.env.PORT5000}`);
+// Create a simple HTTP server
+const server = http.createServer(app);
+
+// Initialize WebSocket server
+const wss = new WebSocket.Server({ noServer: true });
+
+wss.on("connection", (socket) => {
+  socket.send("Hello, client!");
+  socket.on("message", (message) => {
+    console.log("Received:", message);
+  });
+});
+
+// Handle WebSocket upgrade on the HTTP server
+server.on("upgrade", (request, socket, head) => {
+  wss.handleUpgrade(request, socket, head, (socket) => {
+    wss.emit("connection", socket, request);
+  });
+});
+
+// Start the HTTP server
+server.listen(process.env.PORT, () => {
+  console.log(`Server is running on port ${process.env.PORT}`);
   ConnectMongo();
 });
