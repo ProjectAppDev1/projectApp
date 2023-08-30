@@ -65,6 +65,7 @@
                         </div>
                     <%}%>
                 </div>
+                <button class="btn btn-primary shadow" type="button" onclick="checkout(`<%= JSON.stringify(cart) %>`)">Checkout</button>
             </div>
         </div>
     </section>
@@ -88,6 +89,12 @@
             .catch(error => {
                 console.error("Error adding to cart:", error);
             });
+        }
+
+        async function checkout (cart)  {
+            console.log(JSON.parse(cart));
+            const res = await axios.post("http://localhost:5000/orders", JSON.parse(cart))
+            console.log(res.data);
         }
 
     </script>

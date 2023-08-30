@@ -1,154 +1,99 @@
-function createnewwine() {
-    const name = document.getElementById('name').value;
-    const desc= document.getElementById('desc').value;
-    const price = document.getElementById('price').value;
-    const imgUrl = document.getElementById('img-url').value;
-    const size = document.getElementById('size').value;
-    const type = document.getElementById('type').value;
-    const publishToFacebook = document.getElementById("publish-to-fb-page");
+function createnewine() {
+  const name = document.getElementById("name").value;
+  const desc = document.getElementById("desc").value;
+  const price = document.getElementById("price").value;
+  const imgUrl = document.getElementById("img-url").value;
+  const size = document.getElementById("size").value;
+  const type = document.getElementById("type").value;
+  const publishToFacebook = document.getElementById("publish-to-fb-page");
 
-    if (name === '' || desc === '' || size === ''|| price === '' || imgUrl === '' || type === '')
-     {
-        alert("Please fill all fields");
-        return;
-    }
-    
-    const data = {
-        name,
-        desc,
-        size,
-        price,
-        img: imgUrl,
-        type
-    }
-    $.ajax({
-        url: `/api/movies`,
-        method: "POST",
-        dataType: "json",
-        data: data,
-        success: function (response) {
-            updatewines();
-            loadPanel('admin/manageMoviesForm')
-            let alertStr = "The prduct was updated successfuly";
-            if (publishToFacebook.checked) {
-                postToFacebook(name);
-                alertStr += " & published to facebook page."
-            }
-            alert(alertStr);
-        },
-        error: function (xhr, status, error) {
-            console.log("AJAX request failed: " + error);
-        },
-    });
+  if (
+    name === "" ||
+    desc === "" ||
+    size === "" ||
+    price === "" ||
+    imgUrl === "" ||
+    type === ""
+  ) {
+    alert("Please fill all fields");
+    return;
+  }
+
+  const data = {
+    name,
+    desc,
+    size,
+    price,
+    img: imgUrl,
+    type,
+  };
 }
 
 function updatewines() {
-    $.ajax({
-        url: `/api/movies`,
-        method: "GET",
-        dataType: "json",
-        success: function (response) {
-            movies = response;
-        },
-        error: function (xhr, status, error) {
-            console.log("AJAX request failed: " + error);
-        },
-    });
+  $.ajax({
+    url: `/api/movies`,
+    method: "GET",
+    dataType: "json",
+    success: function (response) {
+      movies = response;
+    },
+    error: function (xhr, status, error) {
+      console.log("AJAX request failed: " + error);
+    },
+  });
 }
 
-
 function updateBranches() {
-    $.ajax({
-        url: `/branch`,
-        method: "GET",
-        dataType: "json",
-        success: function (response) {
-            branches = response;
-        },
-        error: function (xhr, status, error) {
-            console.log("AJAX request failed: " + error);
-        },
-    });
+  $.ajax({
+    url: `/branch`,
+    method: "GET",
+    dataType: "json",
+    success: function (response) {
+      branches = response;
+    },
+    error: function (xhr, status, error) {
+      console.log("AJAX request failed: " + error);
+    },
+  });
 }
 
 function updateAdmins() {
-    $.ajax({
-        url: `admin/api`,
-        method: "GET",
-        dataType: "json",
-        success: function (response) {
-            admins = response;
-        },
-        error: function (xhr, status, error) {
-            console.log("AJAX request failed: " + error);
-        },
-    });
+  $.ajax({
+    url: `admin/api`,
+    method: "GET",
+    dataType: "json",
+    success: function (response) {
+      admins = response;
+    },
+    error: function (xhr, status, error) {
+      console.log("AJAX request failed: " + error);
+    },
+  });
 }
 
 function loadPanel(panelUrl) {
-    const adminPanel = document.getElementById('admin-panel');
-    $.ajax({
-        url: panelUrl,
-        method: "GET",
-        success: function (response) {
-            adminPanel.innerHTML = response;
-            loadPanelElements(panelUrl)
-        },
-        error: function (xhr, status, error) {
-            console.log("AJAX request failed: " + error);
-        },
-    });
+  const adminPanel = document.getElementById("admin-panel");
+  $.ajax({
+    url: panelUrl,
+    method: "GET",
+    success: function (response) {
+      adminPanel.innerHTML = response;
+      loadPanelElements(panelUrl);
+    },
+    error: function (xhr, status, error) {
+      console.log("AJAX request failed: " + error);
+    },
+  });
 }
 
 function initNavBarElements() {
-    const navBar = document.getElementById('navbar');
-    const navbarElements = navBar.getElementsByTagName("a")
-    for (let i = 0; i < navbarElements.length; i++) {
-        navbarElements[i].classList = ["unselected-nav"];
-    }
+  const navBar = document.getElementById("navbar");
+  const navbarElements = navBar.getElementsByTagName("a");
+  for (let i = 0; i < navbarElements.length; i++) {
+    navbarElements[i].classList = ["unselected-nav"];
+  }
 }
 
-function loadPanelElements(panelUrl) {
-    initNavBarElements();
-    let adminPanel;
+e;
 
-    if (panelUrl === 'admin/createMovieForm') {
-        adminPanel = document.getElementById('createMovieFormLink');
-    }
-    else if (panelUrl === 'admin/manageMoviesForm') {
-        adminPanel = document.getElementById('manageMoviesFormLink');
-        loadMovieTable();
-    }
-    else if (panelUrl === 'admin/createScreenForm') {
-        adminPanel = document.getElementById('createScreenFormLink');
-        loadCreateScreenForm();
-    }
-    else if (panelUrl === 'admin/manageScreensForm') {
-        adminPanel = document.getElementById('manageScreensFormLink');
-        loadScreensTable();
-    }
-    else if (panelUrl === 'admin/createHallForm') {
-        adminPanel = document.getElementById('createHallFormLink');
-    }
-    else if (panelUrl === 'admin/manageHallsForm') {
-        adminPanel = document.getElementById('manageHallsFormLink');
-        loadHallsTable();
-    }
-    else if (panelUrl === 'admin/createBranchForm') {
-        adminPanel = document.getElementById('createBranchFormLink');
-    }
-    else if (panelUrl === 'admin/manageBranchesForm') {
-        adminPanel = document.getElementById('manageBranchesFormLink');
-        loadBranchesTable();
-    }
-    else if (panelUrl === 'admin/createAdminForm') {
-        adminPanel = document.getElementById('createAdminFormLink');
-    }
-    else if (panelUrl === 'admin/manageAdminsForm') {
-        adminPanel = document.getElementById('manageAdminsFormLink');
-        loadAdminsTable();
-    }
-
-    adminPanel.classList = ["selected-nav"];
-}
-/// 486 delete 
+loadPanel("admin/createwineForm");

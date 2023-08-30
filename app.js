@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const env = require("dotenv");
 const ConnectMongo = require("./config/mongoConfig");
-var path = require ('path');
+var path = require("path");
 
 env.config();
 
@@ -20,7 +20,7 @@ app.use(
 );
 
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname + '../views')));
+app.use(express.static(path.join(__dirname + "../views")));
 // Parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -37,8 +37,7 @@ app.use("/Contact", require("./Routes/Contact"));
 app.use("/admin", require("./Routes/admin"));
 app.use("/Branch", require("./Routes/Branch"));
 app.use("/cart", require("./Routes/cart"));
-app.use("/orders", require("./Routes/orders"))
-
+app.use("/orders", require("./Routes/orders"));
 
 //Adding ejs
 app.set("assets", "ejs");
@@ -46,31 +45,27 @@ app.engine("ejs", require("ejs").__express);
 app.use(express.static(__dirname + "/assets"));
 app.use("/assets", express.static("assets"));
 
+app.get("/getSalesData", async (req, res) => {
+  const client = new MongoClient("mongodb://localhost:27017/", {
+    useNewUrlParser: true,
+  });
+  try {
+    await client.connect();
+    const db = client.db("Purchase");
+    const collection = db.collection("purchase");
 
-
-app.get('/getSalesData', async (req, res) => {
-    const client = new MongoClient('mongodb://localhost:27017/', { useNewUrlParser: true });
-    try {
-        await client.connect();
-        const db = client.db('Purchase'); 
-        const collection = db.collection('purchase');
-
-        const result = await collection.find().toArray();
-        res.json(result);
-    } catch (err) {
-        console.error(err);
-        res.status(500).send('Internal Server Error');
-    } finally {
-        await client.close();
-    }
+    const result = await collection.find().toArray();
+    res.json(result);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Internal Server Error");
+  } finally {
+    await client.close();
+  }
 });
-
-
 
 // listen to port
 app.listen(process.env.PORT, () => {
-  console.log(`listen to port: ${process.env.PORT}`);
+  console.log(`listen to port: ${process.env.PORT5000}`);
   ConnectMongo();
 });
-
-

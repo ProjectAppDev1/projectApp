@@ -1,12 +1,5 @@
 const express = require('express');
+const { index } = require('../controllers/about');
 const router = express.Router();
-
-const { showChart } = require('../controllers/PurchaseController');
-
-router.get('/', (req, res) => {
-    res.render('about');
-});
-
-router.get('/chart', showChart);
-
+router.get('/', index);
 module.exports = router;
