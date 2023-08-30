@@ -1,6 +1,12 @@
 
 const index = (req, res) => {
-    res.render("../views/HomePageTest.ejs", {user: false});
+    if (!req.session.user)
+    {
+        res.render("../views/HomePageTest.ejs", {user: false});
+    }
+    else {
+        res.render("../views/HomePageTest.ejs", {user: req.session.user});
+    }
 }
 
 

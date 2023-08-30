@@ -1,33 +1,20 @@
 const index = (req, res) => {
+    console.log("in index function of admin !");
     res.render("../views/admin.ejs");
 }
 
-const adminService = require("../services/user");
+const userService = require("../services/user");
 
 
-const createMovieForm = (req, res) => {
-  res.render("../views/admin-forms/create-movie-form.ejs");
+const createwineForm = (req, res) => {
+  res.render("../views/admin-forms/create-wine-form.ejs");
 };
 
-const manageMoviesForm = (req, res) => {
-  res.render("../views/admin-forms/manage-movies-form.ejs");
+const managewinesForm = (req, res) => {
+  res.render("../views/admin-forms/manage-wine-form.ejs");
 };
 
-const createScreenForm = (req, res) => {
-  res.render("../views/admin-forms/create-screen-form.ejs");
-};
 
-const manageScreensForm = (req, res) => {
-  res.render("../views/admin-forms/manage-screens-form.ejs");
-};
-
-const createHallForm = (req, res) => {
-  res.render("../views/admin-forms/create-hall-form.ejs");
-};
-
-const manageHallsForm = (req, res) => {
-  res.render("../views/admin-forms/manage-halls-form.ejs");
-};
 
 const createBranchForm = (req, res) => {
   res.render("../views/admin-forms/create-branch-form.ejs");
@@ -47,7 +34,7 @@ const manageAdminsForm = (req, res) => {
 
 const createAdmin = async (req, res) => {
   try {
-    const admin = await adminService.createAdmin(req.body);
+    const admin = await userService.createUser(req.body);
     res.status(201).send(admin);
   } catch (error) {
     res.status(400).send(error);
@@ -56,7 +43,7 @@ const createAdmin = async (req, res) => {
 
 const deleteAdmin = async (req, res) => {
   try {
-    const admin = await adminService.deleteAdmin(req.params.id);
+    const admin = await userService.deleteAdmin(req.params.id);
     res.status(201).send(admin);
   } catch (error) {
     res.status(400).send(error);
@@ -65,7 +52,7 @@ const deleteAdmin = async (req, res) => {
 
 const getAdmin = async (req, res) => {
   try {
-    const admin = await adminService.getAdmin(req.params.id);
+    const admin = await userService.getAdmin(req.params.id);
     res.status(201).send(admin);
   } catch (error) {
     res.status(400).send(error);
@@ -74,7 +61,7 @@ const getAdmin = async (req, res) => {
 
 const getAdmins = async (req, res) => {
   try {
-    const admins = await adminService.getAdmins();
+    const admins = await userService.getAllAdmins();
     res.status(201).send(admins);
   } catch (error) {
     res.status(400).send(error);
@@ -83,7 +70,7 @@ const getAdmins = async (req, res) => {
 
 const updateAdmin = async (req, res) => {
     try {
-        const admin = await adminService.updateAdmin(req.params.id, req.body);
+        const admin = await userService.updateAdmin(req.params.id, req.body);
         res.status(201).send(admin);
       } catch (error) {
         res.status(400).send(error);
@@ -92,12 +79,8 @@ const updateAdmin = async (req, res) => {
 
 module.exports = {
   index,
-  createMovieForm,
-  manageMoviesForm,
-  createScreenForm,
-  manageScreensForm,
-  createHallForm,
-  manageHallsForm,
+  createwineForm,
+  managewinesForm,
   createBranchForm,
   manageBranchesForm,
   createAdminsForm,

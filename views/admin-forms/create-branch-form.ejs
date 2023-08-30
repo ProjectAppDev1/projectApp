@@ -1,0 +1,143 @@
+<head>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+<h1>Create branch</h1>
+<div class="form-horizontal">
+  <div class="form-group">
+    <div class="col-sm-10">
+      <label class="control-label col-sm-1" for="text">Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="branch-name-field"
+        placeholder="Branch name"
+      />
+    </div>
+    <div class="col-sm-10">
+      <label class="control-label col-sm-1" for="text"
+        >Location longtitude</label
+      >
+      <input
+        type="text"
+        class="form-control"
+        id="branch-location-field-long"
+        placeholder="Location long"
+      />
+    </div>
+    <div class="col-sm-10">
+      <label class="control-label col-sm-1" for="text">Location latitude</label>
+      <input
+        type="text"
+        class="form-control"
+        id="branch-location-field-lat"
+        placeholder="Location lat"
+      />
+    </div>
+    <div class="col-sm-10">
+      <div class="control-label col-sm-1">
+        <button onclick="addBranch()" class="btn btn-default">Send</button>
+        <div class="statusOutput"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  function addBranch() {
+    const branchName = document.getElementById("branch-name-field").value;
+    const branchLocationLong = document.getElementById(
+      "branch-location-field-long"
+    ).value;
+    const branchLocationLat = document.getElementById(
+      "branch-location-field-lat"
+    ).value;
+
+    if (
+      branchName === "" ||
+      branchLocationLong === "" ||
+      branchLocationLat === ""
+    ) {
+      alert("Please fill all fields");
+      return;
+    }
+
+    const branch = {
+      name: branchName,
+      longtitude: branchLocationLong,
+      latitude: branchLocationLat,
+    };
+
+    $.ajax({
+      url: `/Branch`,
+      method: "POST",
+      dataType: "json",
+      data: branch,
+      success: function (response) {
+        alert("Branch was updated successfuly");
+      },
+      error: function (xhr, status, error) {
+        console.log("AJAX request failed: " + error);
+      },
+    });
+  }
+</script>
+<button><a href="/admin" class="admin-buttom">Back to Admin Page</a></button>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f5f9;
+    margin: 0;
+    padding: 0;
+  }
+
+  .form-horizontal {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  h1 {
+    color: #3498db;
+    text-align: center;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  label {
+    color: #3498db;
+  }
+
+  .btn-default {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .statusOutput {
+    margin-top: 10px;
+    color: #e74c3c;
+  }
+
+  .admin-buttom {
+    text-decoration: none;
+    color: #3498db;
+    font-weight: bold;
+  }
+  button {
+    margin: 10px;
+  }
+</style>

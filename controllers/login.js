@@ -6,6 +6,11 @@ const index = (req, res) => {
   res.render("../views/login.ejs", {errors: []});
 };
 
+const logout = async (req,res) => {
+  req.session.user = null
+  return res.render("../views/HomePageTest.ejs",{user: false})
+}
+
 const login = async (req, res) => {
   const { username, password } = req.body;
 
@@ -36,4 +41,5 @@ const login = async (req, res) => {
 module.exports = {
   index,
   login,
+  logout
 };

@@ -25,7 +25,7 @@ const editBranch = async (id, name,latitude,longitude) => {
   
     branch.name = name;
     branch.latitude = latitude;
-    branch.longitude-longitude;
+    branch.longitude = longitude;
     return await branch.save();
   };
 
