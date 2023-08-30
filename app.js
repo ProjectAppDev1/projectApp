@@ -5,8 +5,8 @@ const session = require("express-session");
 const env = require("dotenv");
 const ConnectMongo = require("./config/mongoConfig");
 var path = require("path");
-const WebSocket = require('ws');
-const http = require('http');
+const WebSocket = require("ws");
+const http = require("http");
 
 env.config();
 
